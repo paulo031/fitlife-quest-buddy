@@ -54,3 +54,22 @@ export interface Product {
   image: string;
   rating: number;
 }
+
+export interface Walk {
+  id: string;
+  date: string;
+  duration: number; // em segundos
+  distance: number; // em km
+  calories: number;
+  avgSpeed: number; // km/h
+  route: [number, number][]; // coordenadas [lat, lng]
+}
+
+export interface WalkGoal {
+  type: 'distance' | 'time';
+  dailyTarget: number; // km ou minutos
+  weeklyTarget: number;
+  dailyProgress: number;
+  weeklyProgress: number;
+  lastUpdated: string;
+}
