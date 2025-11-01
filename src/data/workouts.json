@@ -1,0 +1,67 @@
+{
+  "workouts": [
+    {
+      "id": "w1",
+      "title": "Treino de Força - Parte Superior",
+      "duration": 45,
+      "difficulty": "medium",
+      "category": "Força",
+      "completed": false,
+      "day": "segunda"
+    },
+    {
+      "id": "w2",
+      "title": "HIIT Cardio",
+      "duration": 30,
+      "difficulty": "hard",
+      "category": "Cardio",
+      "completed": false,
+      "day": "terça"
+    },
+    {
+      "id": "w3",
+      "title": "Yoga e Flexibilidade",
+      "duration": 40,
+      "difficulty": "easy",
+      "category": "Flexibilidade",
+      "completed": false,
+      "day": "quarta"
+    },
+    {
+      "id": "w4",
+      "title": "Treino de Força - Parte Inferior",
+      "duration": 45,
+      "difficulty": "medium",
+      "category": "Força",
+      "completed": false,
+      "day": "quinta"
+    },
+    {
+      "id": "w5",
+      "title": "Core e Abdominais",
+      "duration": 25,
+      "difficulty": "medium",
+      "category": "Core",
+      "completed": false,
+      "day": "sexta"
+    },
+    {
+      "id": "w6",
+      "title": "Treino Funcional",
+      "duration": 35,
+      "difficulty": "medium",
+      "category": "Funcional",
+      "completed": false,
+      "day": "sábado"
+    },
+    {
+      "id": "w7",
+      "title": "Recuperação Ativa",
+      "duration": 30,
+      "difficulty": "easy",
+      "category": "Recuperação",
+      "completed": false,
+      "day": "domingo"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": "b1",
+      "title": "5 Dicas para Manter a Consistência nos Treinos",
+      "excerpt": "Descubra estratégias comprovadas para nunca mais pular o treino e alcançar seus objetivos fitness.",
+      "category": "Motivação",
+      "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800",
+      "readTime": 5
+    },
+    {
+      "id": "b2",
+      "title": "Alimentação Pré e Pós-Treino: O Guia Completo",
+      "excerpt": "Aprenda o que comer antes e depois dos exercícios para maximizar seus resultados.",
+      "category": "Nutrição",
+      "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+      "readTime": 8
+    },
+    {
+      "id": "b3",
+      "title": "Como Evitar Lesões Durante os Exercícios",
+      "excerpt": "Técnicas de aquecimento e alongamento essenciais para treinar com segurança.",
+      "category": "Saúde",
+      "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800",
+      "readTime": 6
+    },
+    {
+      "id": "b4",
+      "title": "Treino em Casa vs Academia: Qual é Melhor?",
+      "excerpt": "Compare os prós e contras de cada opção e descubra qual se adapta melhor ao seu estilo de vida.",
+      "category": "Comparativo",
+      "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800",
+      "readTime": 7
+    }
+  ]
+}

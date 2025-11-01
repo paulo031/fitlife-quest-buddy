@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Whey Protein Premium",
+      "category": "Suplementos",
+      "price": 129.90,
+      "image": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=400",
+      "rating": 4.8
+    },
+    {
+      "id": "p2",
+      "name": "Tapete de Yoga Premium",
+      "category": "Equipamentos",
+      "price": 89.90,
+      "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400",
+      "rating": 4.6
+    },
+    {
+      "id": "p3",
+      "name": "Kit Elásticos de Resistência",
+      "category": "Equipamentos",
+      "price": 59.90,
+      "image": "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=400",
+      "rating": 4.7
+    },
+    {
+      "id": "p4",
+      "name": "Smartwatch Fitness Tracker",
+      "category": "Tecnologia",
+      "price": 299.90,
+      "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400",
+      "rating": 4.9
+    },
+    {
+      "id": "p5",
+      "name": "Garrafa Térmica 1L",
+      "category": "Acessórios",
+      "price": 49.90,
+      "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400",
+      "rating": 4.5
+    },
+    {
+      "id": "p6",
+      "name": "BCAA + Glutamina",
+      "category": "Suplementos",
+      "price": 79.90,
+      "image": "https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=400",
+      "rating": 4.6
+    }
+  ]
+}
