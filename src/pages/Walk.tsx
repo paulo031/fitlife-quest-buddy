@@ -11,9 +11,14 @@ export default function Walk() {
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0); // em metros
   const [lastPosition, setLastPosition] = useState<GeolocationPosition | null>(null);
+  const [isClient, setIsClient] = useState(false);
   
   const watchIdRef = useRef<number | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Calcular distância entre duas coordenadas (fórmula Haversine)
   const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
@@ -33,7 +38,7 @@ export default function Walk() {
 
   // Iniciar caminhada
   const startWalking = () => {
-    if (!navigator.geolocation) {
+    if (!isClient || !navigator.geolocation) {
       toast.error('Geolocalização não suportada neste navegador');
       return;
     }
