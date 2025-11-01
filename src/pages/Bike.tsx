@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Square, MapPin, Clock, Zap, Navigation } from 'lucide-react';
+import { Play, Square, Bike as BikeIcon, MapPin, Clock, Zap, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { toast } from 'sonner';
 
-export default function Walk() {
-  const [isWalking, setIsWalking] = useState(false);
+export default function Bike() {
+  const [isRiding, setIsRiding] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0); // em metros
@@ -31,8 +31,8 @@ export default function Walk() {
     return R * c; // Distância em metros
   };
 
-  // Iniciar caminhada
-  const startWalking = () => {
+  // Iniciar pedalada
+  const startRiding = () => {
     if (!navigator.geolocation) {
       toast.error('Geolocalização não suportada neste navegador');
       return;
@@ -43,10 +43,10 @@ export default function Walk() {
       (position) => {
         setHasPermission(true);
         setLastPosition(position);
-        setIsWalking(true);
+        setIsRiding(true);
         setDuration(0);
         setDistance(0);
-        toast.success('Caminhada iniciada! Boa sorte! 🚶');
+        toast.success('Pedalada iniciada! Boa sorte! 🚴');
 
         // Iniciar cronômetro
         timerRef.current = setInterval(() => {
@@ -89,19 +89,19 @@ export default function Walk() {
     );
   };
 
-  // Parar caminhada
-  const stopWalking = () => {
+  // Parar pedalada
+  const stopRiding = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     if (watchIdRef.current !== null) navigator.geolocation.clearWatch(watchIdRef.current);
 
-    setIsWalking(false);
+    setIsRiding(false);
     
     const distanceKm = (distance / 1000).toFixed(2);
     const durationMin = Math.floor(duration / 60);
     const durationSec = duration % 60;
     
     toast.success(
-      `Caminhada concluída! ${distanceKm}km em ${durationMin}m ${durationSec}s 🎉`
+      `Pedalada concluída! ${distanceKm}km em ${durationMin}m ${durationSec}s 🎉`
     );
   };
 
@@ -115,7 +115,7 @@ export default function Walk() {
 
   const distanceKm = (distance / 1000).toFixed(2);
   const avgSpeed = duration > 0 ? ((distance / 1000) / (duration / 3600)).toFixed(1) : '0.0';
-  const calories = Math.round((distance / 1000) * 65); // Estimativa: ~65 cal/km
+  const calories = Math.round((distance / 1000) * 50); // Estimativa: ~50 cal/km
 
   return (
     <div className="min-h-screen pb-20 bg-background">
@@ -124,19 +124,19 @@ export default function Walk() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="gradient-success rounded-2xl p-6 text-white card-shadow glow-success relative overflow-hidden"
+          className="gradient-energetic rounded-2xl p-6 text-white card-shadow glow-pink relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                <MapPin className="h-6 w-6" />
+                <BikeIcon className="h-6 w-6" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold">Caminhada</h1>
+                <h1 className="text-2xl font-bold">Pedalada</h1>
                 <p className="text-white/90 text-sm">
-                  {isWalking ? 'Em andamento...' : 'Pronto para começar?'}
+                  {isRiding ? 'Em andamento...' : 'Pronto para pedalar?'}
                 </p>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function Walk() {
         </motion.div>
 
         {/* Status da Localização */}
-        {!hasPermission && !isWalking && (
+        {!hasPermission && !isRiding && (
           <Card className="p-4 bg-yellow/10 border-yellow">
             <div className="flex items-start gap-3">
               <Navigation className="h-5 w-5 text-yellow mt-0.5" />
@@ -161,9 +161,9 @@ export default function Walk() {
         {/* Métricas em Tempo Real */}
         <Card className="p-6">
           <AnimatePresence mode="wait">
-            {isWalking ? (
+            {isRiding ? (
               <motion.div
-                key="walking"
+                key="riding"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -175,9 +175,9 @@ export default function Walk() {
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="text-5xl mb-4"
                   >
-                    🚶
+                    🚴
                   </motion.div>
-                  <p className="text-sm text-muted-foreground">Caminhando agora...</p>
+                  <p className="text-sm text-muted-foreground">Pedalando agora...</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -220,9 +220,9 @@ export default function Walk() {
                 exit={{ opacity: 0, y: -20 }}
                 className="text-center py-8"
               >
-                <MapPin className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                <BikeIcon className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Clique em "Iniciar Caminhada" para começar o rastreamento
+                  Clique em "Iniciar Pedalada" para começar o rastreamento
                 </p>
               </motion.div>
             )}
@@ -231,22 +231,22 @@ export default function Walk() {
 
         {/* Botões de Controle */}
         <div className="flex gap-3">
-          {!isWalking ? (
+          {!isRiding ? (
             <Button
-              onClick={startWalking}
-              className="flex-1 gradient-success text-white glow-success h-14 text-lg"
+              onClick={startRiding}
+              className="flex-1 gradient-energetic text-white glow-pink h-14 text-lg"
             >
               <Play className="h-6 w-6 mr-2" />
-              Iniciar Caminhada
+              Iniciar Pedalada
             </Button>
           ) : (
             <Button
-              onClick={stopWalking}
+              onClick={stopRiding}
               variant="destructive"
               className="flex-1 h-14 text-lg"
             >
               <Square className="h-6 w-6 mr-2" />
-              Parar Caminhada
+              Parar Pedalada
             </Button>
           )}
         </div>

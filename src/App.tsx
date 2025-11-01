@@ -2,8 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
+import Workout from "./pages/Workout";
 import Walk from "./pages/Walk";
+import Bike from "./pages/Bike";
+import Tips from "./pages/Tips";
 import Challenge from "./pages/Challenge";
 import Achievements from "./pages/Achievements";
 import Shop from "./pages/Shop";
@@ -20,8 +23,11 @@ function Layout() {
       <Header />
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/workout" element={<Workout />} />
           <Route path="/walk" element={<Walk />} />
+          <Route path="/bike" element={<Bike />} />
+          <Route path="/tips" element={<Tips />} />
           <Route path="/challenge" element={<Challenge />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/shop" element={<Shop />} />

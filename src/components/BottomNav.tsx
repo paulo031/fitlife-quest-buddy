@@ -1,13 +1,13 @@
-import { Home, Trophy, Award, MapPin, ShoppingBag } from 'lucide-react';
+import { Home, Dumbbell, MapPin, Bike, Lightbulb } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const navItems = [
   { icon: Home, label: 'Início', path: '/' },
+  { icon: Dumbbell, label: 'Treino', path: '/workout' },
   { icon: MapPin, label: 'Caminhada', path: '/walk' },
-  { icon: Trophy, label: 'Desafio', path: '/challenge' },
-  { icon: Award, label: 'Conquistas', path: '/achievements' },
-  { icon: ShoppingBag, label: 'Loja', path: '/shop' },
+  { icon: Bike, label: 'Bike', path: '/bike' },
+  { icon: Lightbulb, label: 'Dicas', path: '/tips' },
 ];
 
 export default function BottomNav() {
