@@ -9,43 +9,55 @@
 @layer base {
   :root {
     /* Base colors - Light theme */
-    --background: 0 0% 97.6%;
+    --background: 220 25% 98%;
     --foreground: 0 0% 6.7%;
 
-    /* Fitness primary - Vibrant Blue */
-    --primary: 201 79% 51%;
+    /* Fitness primary - Ultra Vibrant Blue */
+    --primary: 210 100% 55%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 201 79% 65%;
+    --primary-glow: 210 100% 70%;
 
-    /* Success/Achievement - Lime Green */
-    --success: 145 63% 42%;
+    /* Success/Achievement - Electric Lime Green */
+    --success: 142 76% 45%;
     --success-foreground: 0 0% 100%;
-    --success-glow: 145 63% 55%;
+    --success-glow: 142 76% 60%;
 
-    /* Accent - Energetic Orange */
-    --accent: 24 95% 53%;
+    /* Accent - Hot Orange */
+    --accent: 25 100% 58%;
     --accent-foreground: 0 0% 100%;
+
+    /* Purple - Vibrant */
+    --purple: 280 90% 62%;
+    --purple-foreground: 0 0% 100%;
+
+    /* Pink - Electric */
+    --pink: 330 85% 60%;
+    --pink-foreground: 0 0% 100%;
+
+    /* Yellow - Bright */
+    --yellow: 45 100% 55%;
+    --yellow-foreground: 0 0% 10%;
 
     /* Card backgrounds */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 6.7%;
-    --card-hover: 0 0% 98%;
+    --card-hover: 210 40% 98%;
 
     /* Secondary elements */
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 280 90% 62%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted elements */
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 15% 45%;
 
     /* Borders & inputs */
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 201 79% 51%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 210 100% 55%;
 
     /* Destructive */
-    --destructive: 0 84% 60%;
+    --destructive: 0 90% 62%;
     --destructive-foreground: 0 0% 100%;
 
     /* Popover */
@@ -54,67 +66,85 @@
 
     --radius: 0.75rem;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(201 79% 51%), hsl(201 79% 65%));
-    --gradient-success: linear-gradient(135deg, hsl(145 63% 42%), hsl(145 63% 55%));
-    --gradient-energetic: linear-gradient(135deg, hsl(201 79% 51%), hsl(145 63% 42%));
-    --gradient-achievement: linear-gradient(135deg, hsl(24 95% 53%), hsl(45 95% 60%));
+    /* Ultra Vibrant Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 55%), hsl(280 90% 62%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 45%), hsl(100 85% 55%));
+    --gradient-energetic: linear-gradient(135deg, hsl(330 85% 60%), hsl(25 100% 58%));
+    --gradient-achievement: linear-gradient(135deg, hsl(45 100% 55%), hsl(25 100% 58%));
+    --gradient-purple: linear-gradient(135deg, hsl(280 90% 62%), hsl(210 100% 55%));
+    --gradient-rainbow: linear-gradient(135deg, hsl(330 85% 60%), hsl(280 90% 62%), hsl(210 100% 55%), hsl(142 76% 45%));
 
-    /* Shadows */
-    --shadow-glow: 0 0 30px hsl(201 79% 51% / 0.3);
-    --shadow-success: 0 0 30px hsl(145 63% 42% / 0.3);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.05);
+    /* Enhanced Glowing Shadows */
+    --shadow-glow: 0 0 40px hsl(210 100% 55% / 0.5);
+    --shadow-success: 0 0 40px hsl(142 76% 45% / 0.5);
+    --shadow-purple: 0 0 40px hsl(280 90% 62% / 0.5);
+    --shadow-pink: 0 0 40px hsl(330 85% 60% / 0.5);
+    --shadow-card: 0 8px 30px hsl(0 0% 0% / 0.08);
   }
 
   .dark {
     /* Base colors - Dark theme */
-    --background: 0 0% 6.7%;
+    --background: 240 15% 8%;
     --foreground: 0 0% 97.6%;
 
-    /* Primary maintains vibrancy */
-    --primary: 201 79% 51%;
+    /* Ultra Vibrant Colors remain intense in dark mode */
+    --primary: 210 100% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 201 79% 65%;
+    --primary-glow: 210 100% 75%;
 
     /* Success */
-    --success: 145 63% 42%;
+    --success: 142 76% 50%;
     --success-foreground: 0 0% 100%;
-    --success-glow: 145 63% 55%;
+    --success-glow: 142 76% 65%;
 
     /* Accent */
-    --accent: 24 95% 53%;
+    --accent: 25 100% 62%;
     --accent-foreground: 0 0% 100%;
 
+    /* Purple */
+    --purple: 280 90% 68%;
+    --purple-foreground: 0 0% 100%;
+
+    /* Pink */
+    --pink: 330 85% 65%;
+    --pink-foreground: 0 0% 100%;
+
+    /* Yellow */
+    --yellow: 45 100% 58%;
+    --yellow-foreground: 0 0% 10%;
+
     /* Card backgrounds */
-    --card: 0 0% 13%;
+    --card: 240 15% 12%;
     --card-foreground: 0 0% 97.6%;
-    --card-hover: 0 0% 16%;
+    --card-hover: 240 15% 16%;
 
     /* Secondary elements */
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 280 90% 68%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted elements */
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 240 10% 18%;
+    --muted-foreground: 240 5% 65%;
 
     /* Borders & inputs */
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 201 79% 51%;
+    --border: 240 10% 22%;
+    --input: 240 10% 22%;
+    --ring: 210 100% 60%;
 
     /* Destructive */
-    --destructive: 0 84% 60%;
+    --destructive: 0 90% 65%;
     --destructive-foreground: 0 0% 100%;
 
     /* Popover */
-    --popover: 0 0% 13%;
+    --popover: 240 15% 12%;
     --popover-foreground: 0 0% 97.6%;
 
-    /* Enhanced shadows for dark mode */
-    --shadow-glow: 0 0 40px hsl(201 79% 51% / 0.4);
-    --shadow-success: 0 0 40px hsl(145 63% 42% / 0.4);
-    --shadow-card: 0 8px 30px hsl(0 0% 0% / 0.5);
+    /* Ultra vibrant shadows for dark mode */
+    --shadow-glow: 0 0 50px hsl(210 100% 60% / 0.6);
+    --shadow-success: 0 0 50px hsl(142 76% 50% / 0.6);
+    --shadow-purple: 0 0 50px hsl(280 90% 68% / 0.6);
+    --shadow-pink: 0 0 50px hsl(330 85% 65% / 0.6);
+    --shadow-card: 0 12px 40px hsl(0 0% 0% / 0.7);
   }
 }
 
@@ -149,12 +179,28 @@
     background: var(--gradient-achievement);
   }
 
+  .gradient-purple {
+    background: var(--gradient-purple);
+  }
+
+  .gradient-rainbow {
+    background: var(--gradient-rainbow);
+  }
+
   .glow-primary {
     box-shadow: var(--shadow-glow);
   }
 
   .glow-success {
     box-shadow: var(--shadow-success);
+  }
+
+  .glow-purple {
+    box-shadow: var(--shadow-purple);
+  }
+
+  .glow-pink {
+    box-shadow: var(--shadow-pink);
   }
 
   .card-shadow {
@@ -167,10 +213,10 @@
 
   @keyframes glow {
     from {
-      box-shadow: 0 0 20px hsl(201 79% 51% / 0.4);
+      box-shadow: 0 0 30px hsl(210 100% 55% / 0.5);
     }
     to {
-      box-shadow: 0 0 30px hsl(201 79% 51% / 0.6);
+      box-shadow: 0 0 50px hsl(210 100% 55% / 0.8);
     }
   }
 
