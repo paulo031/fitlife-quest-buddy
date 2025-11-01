@@ -12,14 +12,15 @@ const DEFAULT_CENTER: [number, number] = [-23.5505, -46.6333]; // São Paulo
 export default function Bike() {
   const [isRiding, setIsRiding] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(0); // em segundos
   const [distance, setDistance] = useState(0); // em metros
   const [route, setRoute] = useState<[number, number][]>([]); // [lat, lng]
   const [lastPosition, setLastPosition] = useState<GeolocationPosition | null>(null);
   const [isClient, setIsClient] = useState(false);
   
   const watchIdRef = useRef<number | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const startTimeRef = useRef<number>(0); // Tempo de início em milissegundos
 
   useEffect(() => {
     setIsClient(true);
@@ -41,6 +42,14 @@ export default function Bike() {
     return R * c; // Distância em metros
   };
 
+  // Função para atualizar o cronômetro
+  const updateTimer = () => {
+    if (startTimeRef.current > 0) {
+      const elapsedSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      setDuration(elapsedSeconds);
+    }
+  };
+
   // Iniciar pedalada
   const startRiding = () => {
     if (!isClient || !navigator.geolocation) {
@@ -57,22 +66,28 @@ export default function Bike() {
         setDuration(0);
         setDistance(0);
         setRoute([[position.coords.latitude, position.coords.longitude]]);
+        startTimeRef.current = Date.now(); // Define o tempo de início
         toast.success('Pedalada iniciada! Boa sorte! 🚴');
 
-        // Iniciar cronômetro
-        timerRef.current = setInterval(() => {
-          setDuration((prev) => prev + 1);
-        }, 1000);
+        // Iniciar cronômetro (atualiza a cada segundo)
+        timerIntervalRef.current = setInterval(updateTimer, 1000);
 
         // Monitorar posição
         watchIdRef.current = navigator.geolocation.watchPosition(
           (newPosition) => {
             const newCoords: [number, number] = [newPosition.coords.latitude, newPosition.coords.longitude];
 
-            if (lastPosition) {
+            setRoute((prevRoute) => {
+              // Se for a primeira coordenada ou se a posição mudou significativamente
+              if (prevRoute.length === 0) {
+                setLastPosition(newPosition);
+                return [newCoords];
+              }
+
+              const lastCoords = prevRoute[prevRoute.length - 1];
               const dist = calculateDistance(
-                lastPosition.coords.latitude,
-                lastPosition.coords.longitude,
+                lastCoords[0],
+                lastCoords[1],
                 newCoords[0],
                 newCoords[1]
               );
@@ -81,12 +96,13 @@ export default function Bike() {
               if (dist > 5) {
                 setDistance((prev) => prev + dist);
                 setLastPosition(newPosition);
-                setRoute((prevRoute) => [...prevRoute, newCoords]);
+                return [...prevRoute, newCoords];
               }
-            } else {
+              
+              // Se o movimento não for significativo, apenas atualiza a última posição para referência futura
               setLastPosition(newPosition);
-              setRoute([newCoords]);
-            }
+              return prevRoute;
+            });
           },
           (error) => {
             console.error('Erro ao obter localização:', error);
@@ -94,8 +110,9 @@ export default function Bike() {
           },
           {
             enableHighAccuracy: true,
-            timeout: 5000,
+            timeout: 10000, // Aumentei o timeout para 10s
             maximumAge: 0,
+            distanceFilter: 5, // Filtra atualizações de posição se a mudança for menor que 5 metros
           }
         );
       },
@@ -108,8 +125,9 @@ export default function Bike() {
 
   // Parar pedalada
   const stopRiding = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
+    if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     if (watchIdRef.current !== null) navigator.geolocation.clearWatch(watchIdRef.current);
+    startTimeRef.current = 0;
 
     setIsRiding(false);
     
@@ -126,7 +144,7 @@ export default function Bike() {
   // Cleanup
   useEffect(() => {
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
       if (watchIdRef.current !== null) navigator.geolocation.clearWatch(watchIdRef.current);
     };
   }, []);
@@ -136,11 +154,11 @@ export default function Bike() {
   const calories = Math.round((distance / 1000) * 50); // Estimativa: ~50 cal/km
 
   const mapCenter: [number, number] = useMemo(() => {
-    if (route.length > 0) {
-      return route[route.length - 1];
+    if (lastPosition) {
+      return [lastPosition.coords.latitude, lastPosition.coords.longitude];
     }
     return DEFAULT_CENTER;
-  }, [route]);
+  }, [lastPosition]);
 
   return (
     <div className="min-h-screen pb-20 bg-background">
