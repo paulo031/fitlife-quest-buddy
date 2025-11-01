@@ -32,7 +32,7 @@ export default function Shop() {
                 <ShoppingBag className="h-6 w-6" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold">Loja FitLife</h1>
+                <h1 className="text-2xl font-bold">Loja Equipe Treino</h1>
                 <p className="text-white/90 text-sm">
                   Produtos essenciais para sua jornada
                 </p>

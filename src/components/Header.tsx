@@ -16,10 +16,10 @@ export default function Header() {
           className="flex items-center gap-2"
         >
           <div className="w-10 h-10 gradient-energetic rounded-full flex items-center justify-center glow-primary">
-            <span className="text-xl font-bold text-white">FL</span>
+            <span className="text-xl font-bold text-white">ET</span>
           </div>
           <div>
-            <h1 className="text-lg font-bold text-foreground">FitLife Lite</h1>
+            <h1 className="text-lg font-bold text-foreground">Equipe Treino</h1>
             <p className="text-xs text-muted-foreground">Sua jornada fitness</p>
           </div>
         </motion.div>
