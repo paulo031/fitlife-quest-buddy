@@ -14,26 +14,32 @@ import BottomNav from "./components/BottomNav";
 
 const queryClient = new QueryClient();
 
+function Layout() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/challenge" element={<Challenge />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <BottomNav />
+    </div>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/challenge" element={<Challenge />} />
-              <Route path="/achievements" element={<Achievements />} />
-              <Route path="/friends" element={<Friends />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <BottomNav />
-        </div>
+        <Layout />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
