@@ -1,15 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Square, Bike as BikeIcon, MapPin, Clock, Zap, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { toast } from 'sonner';
+import ClientMap from '@/components/ClientMap';
+
+// Coordenadas de exemplo para centralizar o mapa se não houver localização
+const DEFAULT_CENTER: [number, number] = [-23.5505, -46.6333]; // São Paulo
 
 export default function Bike() {
   const [isRiding, setIsRiding] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0); // em metros
+  const [route, setRoute] = useState<[number, number][]>([]); // [lat, lng]
   const [lastPosition, setLastPosition] = useState<GeolocationPosition | null>(null);
   const [isClient, setIsClient] = useState(false);
   
@@ -51,6 +56,7 @@ export default function Bike() {
         setIsRiding(true);
         setDuration(0);
         setDistance(0);
+        setRoute([[position.coords.latitude, position.coords.longitude]]);
         toast.success('Pedalada iniciada! Boa sorte! 🚴');
 
         // Iniciar cronômetro
@@ -61,19 +67,25 @@ export default function Bike() {
         // Monitorar posição
         watchIdRef.current = navigator.geolocation.watchPosition(
           (newPosition) => {
+            const newCoords: [number, number] = [newPosition.coords.latitude, newPosition.coords.longitude];
+
             if (lastPosition) {
               const dist = calculateDistance(
                 lastPosition.coords.latitude,
                 lastPosition.coords.longitude,
-                newPosition.coords.latitude,
-                newPosition.coords.longitude
+                newCoords[0],
+                newCoords[1]
               );
               
               // Adicionar à distância total (somente se movimento significativo > 5m)
               if (dist > 5) {
                 setDistance((prev) => prev + dist);
                 setLastPosition(newPosition);
+                setRoute((prevRoute) => [...prevRoute, newCoords]);
               }
+            } else {
+              setLastPosition(newPosition);
+              setRoute([newCoords]);
             }
           },
           (error) => {
@@ -108,6 +120,7 @@ export default function Bike() {
     toast.success(
       `Pedalada concluída! ${distanceKm}km em ${durationMin}m ${durationSec}s 🎉`
     );
+    // Aqui você salvaria a rota e as métricas
   };
 
   // Cleanup
@@ -121,6 +134,13 @@ export default function Bike() {
   const distanceKm = (distance / 1000).toFixed(2);
   const avgSpeed = duration > 0 ? ((distance / 1000) / (duration / 3600)).toFixed(1) : '0.0';
   const calories = Math.round((distance / 1000) * 50); // Estimativa: ~50 cal/km
+
+  const mapCenter: [number, number] = useMemo(() => {
+    if (route.length > 0) {
+      return route[route.length - 1];
+    }
+    return DEFAULT_CENTER;
+  }, [route]);
 
   return (
     <div className="min-h-screen pb-20 bg-background">
@@ -147,6 +167,15 @@ export default function Bike() {
             </div>
           </div>
         </motion.div>
+
+        {/* Mapa */}
+        <Card className="p-0 overflow-hidden">
+          <ClientMap 
+            route={route} 
+            center={mapCenter} 
+            zoom={route.length > 0 ? 15 : 10} 
+          />
+        </Card>
 
         {/* Status da Localização */}
         {!hasPermission && !isRiding && (
