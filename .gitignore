@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 # Lockfiles
-pnpm-lock.yaml
 bun.lockb
 
 # Editor directories and files
