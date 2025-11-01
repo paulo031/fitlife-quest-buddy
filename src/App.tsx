@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Challenge from "./pages/Challenge";
 import Achievements from "./pages/Achievements";
-import Friends from "./pages/Friends";
+import Shop from "./pages/Shop";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
@@ -23,7 +23,7 @@ function Layout() {
           <Route path="/" element={<Index />} />
           <Route path="/challenge" element={<Challenge />} />
           <Route path="/achievements" element={<Achievements />} />
-          <Route path="/friends" element={<Friends />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

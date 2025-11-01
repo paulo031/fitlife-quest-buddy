@@ -1,4 +1,4 @@
-import { Home, Trophy, Award, Users, BookOpen } from 'lucide-react';
+import { Home, Trophy, Award, ShoppingBag, BookOpen } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -6,7 +6,7 @@ const navItems = [
   { icon: Home, label: 'Início', path: '/' },
   { icon: Trophy, label: 'Desafio', path: '/challenge' },
   { icon: Award, label: 'Conquistas', path: '/achievements' },
-  { icon: Users, label: 'Amigos', path: '/friends' },
+  { icon: ShoppingBag, label: 'Loja', path: '/shop' },
   { icon: BookOpen, label: 'Blog', path: '/blog' },
 ];
 
